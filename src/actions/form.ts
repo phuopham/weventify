@@ -4,7 +4,7 @@ import { currentUser } from "@clerk/nextjs";
 
 class UserNotFoundErr extends Error { }
 
-export async function GetFormStats() {
+export const GetFormStats = async () => {
   const user = await currentUser();
   if (!user) {
     throw new UserNotFoundErr();
@@ -39,7 +39,7 @@ export async function GetFormStats() {
   };
 }
 
-export async function CreateForm(data: formSchemaType) {
+export const CreateForm = async (data: formSchemaType) => {
   const validation = formSchema.safeParse(data);
   if (!validation.success) {
     throw new Error("form not valid");
@@ -67,7 +67,7 @@ export async function CreateForm(data: formSchemaType) {
   return form.id;
 }
 
-export async function GetForms() {
+export const GetForms = async () => {
   const user = await currentUser();
   if (!user) {
     throw new UserNotFoundErr();
@@ -83,7 +83,7 @@ export async function GetForms() {
   });
 }
 
-export async function GetFormById(id: string) {
+export const GetFormById = async (id: string) => {
   const user = await currentUser();
   if (!user) {
     throw new UserNotFoundErr();
@@ -97,7 +97,7 @@ export async function GetFormById(id: string) {
   });
 }
 
-export async function UpdateFormContent(id: string, jsonContent: string) {
+export const UpdateFormContent = async (id: string, jsonContent: string) => {
   const user = await currentUser();
   if (!user) {
     throw new UserNotFoundErr();
@@ -114,7 +114,7 @@ export async function UpdateFormContent(id: string, jsonContent: string) {
   });
 }
 
-export async function PublishForm(id: string) {
+export const PublishForm = async (id: string) => {
   const user = await currentUser();
   if (!user) {
     throw new UserNotFoundErr();
@@ -131,7 +131,7 @@ export async function PublishForm(id: string) {
   });
 }
 
-export async function GetFormContentByUrl(formUrl: string) {
+export const GetFormContentByUrl = async (formUrl: string) => {
   return await prisma.form.update({
     select: {
       content: true,
@@ -147,7 +147,7 @@ export async function GetFormContentByUrl(formUrl: string) {
   });
 }
 
-export async function SubmitForm(formUrl: string, content: string) {
+export const SubmitForm = async (formUrl: string, content: string) => {
   return await prisma.form.update({
     data: {
       submissions: {
@@ -166,7 +166,7 @@ export async function SubmitForm(formUrl: string, content: string) {
   });
 }
 
-export async function GetFormWithSubmissions(id: string) {
+export const GetFormWithSubmissions = async (id: string) => {
   const user = await currentUser();
   if (!user) {
     throw new UserNotFoundErr();

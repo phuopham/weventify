@@ -1,11 +1,11 @@
 import { GetFormStats } from "@/actions/form";
-import { StatsCard } from "./StatsCard";
+import { StatsCard } from "@/components/StatsCard";
 import { LuView } from "react-icons/lu";
 import { FaWpforms } from "react-icons/fa";
 import { HiCursorClick } from "react-icons/hi";
 import { TbArrowBounce } from "react-icons/tb";
 
-export const StatsCards = async ({loading}: {loading:boolean}) => {
+export const StatsCards = async () => {
     const data = await GetFormStats();
 
     return (
@@ -15,7 +15,6 @@ export const StatsCards = async ({loading}: {loading:boolean}) => {
                 icon={<LuView className="text-slate-600" />}
                 helperText="All time form visits"
                 value={data?.visits.toLocaleString() || ""}
-                loading={loading}
                 className="shadow-md shadow-slate-600"
             />
 
@@ -24,7 +23,6 @@ export const StatsCards = async ({loading}: {loading:boolean}) => {
                 icon={<FaWpforms className="text-slate-600" />}
                 helperText="All time form submissions"
                 value={data?.submissions.toLocaleString() || ""}
-                loading={loading}
                 className="shadow-md shadow-slate-600"
             />
 
@@ -33,7 +31,6 @@ export const StatsCards = async ({loading}: {loading:boolean}) => {
                 icon={<HiCursorClick className="text-slate-600" />}
                 helperText="Visits that result in form submission"
                 value={data?.submissionRate.toLocaleString() + "%" || ""}
-                loading={loading}
                 className="shadow-md shadow-slate-600"
             />
 
@@ -42,7 +39,6 @@ export const StatsCards = async ({loading}: {loading:boolean}) => {
                 icon={<TbArrowBounce className="text-slate-600" />}
                 helperText="Visits that leaves without interacting"
                 value={data?.submissionRate.toLocaleString() + "%" || ""}
-                loading={loading}
                 className="shadow-md shadow-slate-600"
             />
         </div>
