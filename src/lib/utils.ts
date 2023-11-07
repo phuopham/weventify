@@ -16,7 +16,7 @@ export const timeDistance = (formCreatedAt: Date) => {
 
   let message = '';
   if (diffInDays > 0) {
-    message = diffInDays == 1 ? 'a days ago' : diffInDays + ' days ago';
+    message = diffInDays == 1 ? 'a day ago' : diffInDays + ' days ago';
   } else if (diffInHours > 0) {
     message = diffInHours == 1 ? 'an hour ago' : diffInHours + ' hours ago';
   } else if (diffInMinutes > 0) {

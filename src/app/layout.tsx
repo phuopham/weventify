@@ -4,6 +4,7 @@ import '@/app/globals.css'
 import { Inter as FontSans } from "next/font/google"
 import { cn } from '@/lib/utils'
 import { ClerkProvider } from '@clerk/nextjs'
+import { Toaster } from '@/components/ui/toaster'
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -26,7 +27,10 @@ const RootLayout = ({
         <body className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
-        )}>{children}</body>
+        )}>
+          {children}
+          <Toaster />
+        </body>
       </html>
     </ClerkProvider>
   )
